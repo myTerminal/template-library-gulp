@@ -1,0 +1,45 @@
+{
+  "name": "template-library",
+  "version": "0.9.0",
+  "description": "template-library",
+  "main": "build/scripts/template-library.js",
+  "scripts": {
+    "gulp": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:myTerminal/template-library-gulp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/myTerminal/template-library-gulp/issues"
+  },
+  "homepage": "https://github.com/myTerminal/template-library-gulp#readme",
+  "keywords": [
+    "template"
+  ],
+  "author": "Mohammed Ismail Ansari <team.terminal@gmail.com>",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "jquery": "3.2.1"
+  },
+  "devDependencies": {
+    "babel-preset-env": "1.6.0",
+    "babelify": "7.3.0",
+    "browserify": "14.4.0",
+    "gulp": "3.9.1",
+    "gulp-clean": "0.3.2",
+    "gulp-cleancss": "0.2.2",
+    "gulp-concat": "2.6.1",
+    "gulp-copy": "1.0.1",
+    "gulp-jscs": "4.0.0",
+    "gulp-jshint": "2.0.4",
+    "gulp-less": "3.3.2",
+    "gulp-sync": "0.1.4",
+    "gulp-uglify": "3.0.0",
+    "gulp-watch-now": "0.9.1",
+    "jshint": "2.9.5",
+    "jshint-stylish": "2.2.1",
+    "vinyl-buffer": "1.0.0",
+    "vinyl-source-stream": "1.1.0"
+  }
+}

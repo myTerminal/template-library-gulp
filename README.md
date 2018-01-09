@@ -58,3 +58,7 @@ A template to create front-end libraries with [Gulp.js](https://www.npmjs.com/pa
    - run JSHint over JavaScript files
    - run JSCS over JavaScript files
  - develop to watch over the source files and run tasks related to the changed files
+
+## To-Do
+
+ - Make it more ES6 friendly

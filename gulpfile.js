@@ -11,15 +11,15 @@ var gulp = require('gulp'),
     less = require('gulp-less'),
     cleanCSS = require('gulp-cleancss'),
     concat = require('gulp-concat'),
+    sourcemaps = require('gulp-sourcemaps'),
+    gulpBabel = require('gulp-babel'),
+    wrap = require('gulp-wrap-umd'),
     uglify = require('gulp-uglify'),
     jshint = require('gulp-jshint'),
     jshintStylish = require('jshint-stylish'),
     jscs = require('gulp-jscs'),
     gulpSync = require('gulp-sync')(gulp),
-    watchNow = require('gulp-watch-now'),
-    source = require('vinyl-source-stream'),
-    buffer = require('vinyl-buffer'),
-    browserify = require('browserify');
+    watchNow = require('gulp-watch-now');
 
 gulp.task('clean', function () {
     return gulp.src(outputDir, { read: false })
@@ -47,26 +47,94 @@ gulp.task('styles', function () {
 });
 
 gulp.task('scripts-debug', function () {
-    return browserify({
-        entries: sourceDir + '/scripts/' + libraryFileName + '.js',
-        debug: true
-    })
-        .transform("babelify", { presets: ["env"] })
-        .bundle()
-        .pipe(source(libraryFileName + '.js'))
-        .pipe(buffer())
+    return gulp.src(sourceDir + '/scripts/' + libraryFileName + '.js')
+        .pipe(sourcemaps.init())
+        .pipe(gulpBabel({
+            presets: ['env']
+        }))
+        .pipe(wrap({
+            deps: [
+                {
+                    name: 'jquery',
+                    globalName: '$',
+                    paramName: '$',
+                    amdName: 'jquery',
+                    cjsName: 'jquery'
+                }
+            ],
+            namespace: libraryName,
+            exports: libraryName,
+            template: `<%
+var stdDeps = ['require', 'exports', 'module'];
+
+var amdDeps = _.pluck(deps, 'amdName');
+var globalDeps = _.map(deps, function(dep) { return 'root.' + dep.globalName });
+var cjsDeps = deps ? _.map(deps, function(dep) { return "require('" + dep.cjsName + "')" }) : stdDeps;
+var depNames = deps ? _.pluck(deps, 'paramName') : stdDeps;
+%>
+(function(root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define('<%= namespace %>', <%= deps ? JSON.stringify(amdDeps) + ', ' : '' %>factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory(<%= cjsDeps.join(', ') %>);
+  } else {
+    root.<%= namespace %> = factory(<%= globalDeps.join(', ') %>);
+  }
+}(this, function(<%= depNames.join(', ') %>) {
+<% if (exports) { %>
+<%= contents %>
+return <%= exports %>;
+<% } else { %>
+return <%= contents %>;
+<% } %>
+}));`
+        }))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(outputDir + '/scripts/'));
 });
 
 gulp.task('scripts', function () {
-    return browserify({
-        entries: sourceDir + '/scripts/' + libraryFileName + '.js',
-        debug: true
-    })
-        .transform("babelify", { presets: ["env"] })
-        .bundle()
-        .pipe(source(libraryFileName + '.js'))
-        .pipe(buffer())
+    return gulp.src(sourceDir + '/scripts/' + libraryFileName + '.js')
+        .pipe(gulpBabel({
+            presets: ['env']
+        }))
+        .pipe(wrap({
+            deps: [
+                {
+                    name: 'jquery',
+                    globalName: '$',
+                    paramName: '$',
+                    amdName: 'jquery',
+                    cjsName: 'jquery'
+                }
+            ],
+            namespace: libraryName,
+            exports: libraryName,
+            template: `<%
+var stdDeps = ['require', 'exports', 'module'];
+
+var amdDeps = _.pluck(deps, 'amdName');
+var globalDeps = _.map(deps, function(dep) { return 'root.' + dep.globalName });
+var cjsDeps = deps ? _.map(deps, function(dep) { return "require('" + dep.cjsName + "')" }) : stdDeps;
+var depNames = deps ? _.pluck(deps, 'paramName') : stdDeps;
+%>
+(function(root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define('<%= namespace %>', <%= deps ? JSON.stringify(amdDeps) + ', ' : '' %>factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory(<%= cjsDeps.join(', ') %>);
+  } else {
+    root.<%= namespace %> = factory(<%= globalDeps.join(', ') %>);
+  }
+}(this, function(<%= depNames.join(', ') %>) {
+<% if (exports) { %>
+<%= contents %>
+return <%= exports %>;
+<% } else { %>
+return <%= contents %>;
+<% } %>
+}));`
+        }))
         .pipe(uglify())
         .pipe(gulp.dest(outputDir + '/scripts/'));
 });

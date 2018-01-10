@@ -62,3 +62,4 @@ A template to create front-end libraries with [Gulp.js](https://www.npmjs.com/pa
 ## To-Do
 
  - Make it more ES6 friendly
+ - Find a way to write and run tests

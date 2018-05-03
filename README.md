@@ -1,8 +1,6 @@
 # template-library-gulp
 
-[![Code Climate](https://codeclimate.com/github/myTerminal/template-library-gulp.png)](https://codeclimate.com/github/myTerminal/template-library-gulp)
-[![bitHound Overall Score](https://www.bithound.io/github/myTerminal/template-library-gulp/badges/score.svg)](https://www.bithound.io/github/myTerminal/template-library-gulp)
-[![bitHound Code](https://www.bithound.io/github/myTerminal/template-library-gulp/badges/code.svg)](https://www.bithound.io/github/myTerminal/template-library-gulp)  
+[![Code Climate](https://codeclimate.com/github/myTerminal/template-library-gulp.png)](https://codeclimate.com/github/myTerminal/template-library-gulp)  
 [![Dependency Status](https://david-dm.org/myTerminal/template-library-gulp.svg)](https://david-dm.org/myTerminal/template-library-gulp)
 [![devDependency Status](https://david-dm.org/myTerminal/template-library-gulp/dev-status.svg)](https://david-dm.org/myTerminal/template-library-gulp#info=devDependencies)
 [![peer Dependency Status](https://david-dm.org/myTerminal/template-library-gulp/peer-status.svg)](https://david-dm.org/myTerminal/template-library-gulp#info=peerDependencies)  

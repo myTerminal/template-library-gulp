@@ -47,9 +47,7 @@ gulp.task('styles', function () {
 gulp.task('scripts-debug', function () {
     return gulp.src(sourceDir + '/scripts/' + libraryFileName + '.js')
         .pipe(sourcemaps.init())
-        .pipe(gulpBabel({
-            presets: ['env']
-        }))
+        .pipe(gulpBabel())
         .pipe(wrap({
             deps: [
                 {
@@ -93,9 +91,7 @@ return <%= contents %>;
 
 gulp.task('scripts', function () {
     return gulp.src(sourceDir + '/scripts/' + libraryFileName + '.js')
-        .pipe(gulpBabel({
-            presets: ['env']
-        }))
+        .pipe(gulpBabel())
         .pipe(wrap({
             deps: [
                 {

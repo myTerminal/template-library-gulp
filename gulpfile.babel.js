@@ -1,54 +1,47 @@
 /* global require */
 
-const libraryFileName = 'template-library';
-const libraryName = 'templateLibrary';
-const sourceDir = 'src';
-const outputDir = 'build';
+const libraryFileName = 'template-library',
+    libraryName = 'templateLibrary',
+    sourceDir = 'src',
+    outputDir = 'build';
 
-var gulp = require('gulp'),
-    clean = require('gulp-clean'),
-    copy = require('gulp-copy'),
-    less = require('gulp-less'),
-    cleanCSS = require('gulp-cleancss'),
-    concat = require('gulp-concat'),
-    sourcemaps = require('gulp-sourcemaps'),
+const gulp = require('gulp'),
+    del = require('del'),
+    gulpCopy = require('gulp-copy'),
+    gulpLess = require('gulp-less'),
+    gulpCleanCss = require('gulp-clean-css'),
+    gulpConcat = require('gulp-concat'),
+    gulpSourceMaps = require('gulp-sourcemaps'),
     gulpBabel = require('gulp-babel'),
-    wrap = require('gulp-wrap-umd'),
-    uglify = require('gulp-uglify'),
-    eslint = require('gulp-eslint'),
-    gulpSync = require('gulp-sync')(gulp),
-    watchNow = require('gulp-watch-now');
+    gulpWrap = require('gulp-wrap-umd'),
+    gulpUglify = require('gulp-uglify'),
+    gulpEslint = require('gulp-eslint');
 
-gulp.task('clean', function () {
-    return gulp.src(outputDir, { read: false })
-        .pipe(clean());
-});
+const clean = (done) => {
+    return del([outputDir], done);
+};
 
-gulp.task('copy-fonts', function () {
-    return gulp.src([
+const copyFonts = () =>
+    gulp.src([
         sourceDir + '/fonts/**/*'
-    ]).pipe(copy(outputDir, {
+    ]).pipe(gulpCopy(outputDir, {
         prefix: 1
     }));
-});
 
-gulp.task('copy', [
-    'copy-fonts'
-]);
+const copy = copyFonts;
 
-gulp.task('styles', function () {
-    return gulp.src(sourceDir + '/styles/**/*.less')
-        .pipe(less())
-        .pipe(concat(libraryFileName + '.css'))
-        .pipe(cleanCSS())
+const styles = () =>
+    gulp.src(sourceDir + '/styles/**/*.less')
+        .pipe(gulpLess())
+        .pipe(gulpConcat(libraryFileName + '.css'))
+        .pipe(gulpCleanCss())
         .pipe(gulp.dest(outputDir + '/styles'));
-});
 
-gulp.task('scripts-debug', function () {
-    return gulp.src(sourceDir + '/scripts/' + libraryFileName + '.js')
-        .pipe(sourcemaps.init())
+const scriptsDebug = () =>
+    gulp.src(sourceDir + '/scripts/' + libraryFileName + '.js')
+        .pipe(gulpSourceMaps.init())
         .pipe(gulpBabel())
-        .pipe(wrap({
+        .pipe(gulpWrap({
             deps: [
                 {
                     name: 'jquery',
@@ -85,14 +78,13 @@ return <%= contents %>;
 <% } %>
 }));`
         }))
-        .pipe(sourcemaps.write('.'))
+        .pipe(gulpSourceMaps.write('.'))
         .pipe(gulp.dest(outputDir + '/scripts/'));
-});
 
-gulp.task('scripts', function () {
-    return gulp.src(sourceDir + '/scripts/' + libraryFileName + '.js')
+const scripts = () =>
+    gulp.src(sourceDir + '/scripts/' + libraryFileName + '.js')
         .pipe(gulpBabel())
-        .pipe(wrap({
+        .pipe(gulpWrap({
             deps: [
                 {
                     name: 'jquery',
@@ -129,50 +121,58 @@ return <%= contents %>;
 <% } %>
 }));`
         }))
-        .pipe(uglify())
+        .pipe(gulpUglify())
         .pipe(gulp.dest(outputDir + '/scripts/'));
-});
 
-gulp.task('lint', function () {
-    return gulp.src(sourceDir + '/scripts/**/*.js')
-        .pipe(eslint())
-        .pipe(eslint.format())
-        .pipe(eslint.failAfterError());
-});
+const lint = () =>
+    gulp.src(sourceDir + '/scripts/**/*.js')
+        .pipe(gulpEslint())
+        .pipe(gulpEslint.format())
+        .pipe(gulpEslint.failAfterError());
 
-gulp.task('debug', gulpSync.sync([
-    'clean',
-    'copy',
-    'styles',
-    'scripts-debug',
-    'lint'
-]));
+const debug = gulp.series(
+    clean,
+    copy,
+    styles,
+    scriptsDebug,
+    lint
+);
 
-gulp.task('build', gulpSync.sync([
-    'clean',
-    'copy',
-    'styles',
-    'scripts'
-]));
+const build = gulp.series(
+    clean,
+    copy,
+    styles,
+    scripts
+);
 
-gulp.task('develop', function() {
-    watchNow.watch(gulp, [
-        sourceDir + '/fonts/**/*'
-    ], [
-        'copy'
-    ]);
+const develop = () => {
+    gulp.watch(
+        [
+            sourceDir + '/fonts/**/*'
+        ],
+        copy
+    );
 
-    watchNow.watch(gulp, [
-        sourceDir + '/styles/**/*.less'
-    ], [
-        'styles'
-    ]);
+    gulp.watch(
+        [
+            sourceDir + '/styles/**/*.less'
+        ],
+        styles
+    );
 
-    watchNow.watch(gulp, [
-        sourceDir + '/scripts/**/*.js'
-    ], [
-        'scripts-debug'
-    ]);
-});
+    gulp.watch(
+        [
+            sourceDir + '/scripts/**/*.js'
+        ],
+        scriptsDebug
+    );
+};
 
-gulp.task('default', ['build']);
+export {
+    debug,
+    build,
+    develop,
+    lint
+}
+
+export default build;

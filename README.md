@@ -29,7 +29,7 @@ A template to create front-end libraries with [Gulp.js](https://www.npmjs.com/pa
  - [gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps) to generate source-maps for debugging
  - [gulp-wrap-umd](https://www.npmjs.com/package/gulp-wrap-umd) to wrap library code as a UMD
  - [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) to minify JavaScript files
- - [gulp-eslint](https://www.npmjs.com/package/gulp-eslint), [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb), [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import), [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y) and [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) to run ESLint on JavaScript files
+ - [gulp-eslint](https://www.npmjs.com/package/gulp-eslint), [babel-eslint](https://www.npmjs.com/package/babel-eslint), [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb), [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import), [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y) and [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) to run ESLint on JavaScript files
 
 #### Tasks
 

@@ -24,6 +24,7 @@ A template to create front-end libraries with [Gulp.js](https://www.npmjs.com/pa
  - [gulp-concat](https://www.npmjs.com/package/gulp-concat) to concat files
  - [gulp-copy](https://www.npmjs.com/package/gulp-copy) to copy static resources to the output directory
  - [gulp-less](https://www.npmjs.com/package/gulp-less) to transpile LESS stylesheets into CSS
+ - [effortless-css](https://www.npmjs.com/package/effortless-css) to provide Less CSS mixins
  - [gulp-cleancss](https://www.npmjs.com/package/gulp-cleancss) to minify CSS
  - [gulp-babel](https://www.npmjs.com/package/gulp-babel), [babel-core](https://www.npmjs.com/package/babel-core) and [babel-preset-env](https://www.npmjs.com/package/babel-preset-env) for ES2015 transpilation
  - [gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps) to generate source-maps for debugging

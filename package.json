@@ -27,6 +27,7 @@
     "babel-eslint": "10.0.1",
     "babel-preset-env": "1.7.0",
     "del": "3.0.0",
+    "effortless-css": "0.10.1",
     "eslint-config-airbnb": "17.1.0",
     "eslint-plugin-import": "2.16.0",
     "eslint-plugin-jsx-a11y": "6.2.0",

@@ -4,7 +4,7 @@
 [![Dependency Status](https://david-dm.org/myTerminal/template-library-gulp.svg)](https://david-dm.org/myTerminal/template-library-gulp)
 [![devDependency Status](https://david-dm.org/myTerminal/template-library-gulp/dev-status.svg)](https://david-dm.org/myTerminal/template-library-gulp#info=devDependencies)
 [![peer Dependency Status](https://david-dm.org/myTerminal/template-library-gulp/peer-status.svg)](https://david-dm.org/myTerminal/template-library-gulp#info=peerDependencies)  
-[![License](https://img.shields.io/badge/LICENSE-GPL%20v3.0-blue.svg)](https://www.gnu.org/licenses/gpl.html)
+[![License: CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc-sa/4.0)
 
 A template to create front-end libraries with [Gulp.js](https://www.npmjs.com/package/gulp) as the task-runner
 

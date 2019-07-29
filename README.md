@@ -1,9 +1,5 @@
 # template-library-gulp
 
-[![Code Climate](https://codeclimate.com/github/myTerminal/template-library-gulp.png)](https://codeclimate.com/github/myTerminal/template-library-gulp)  
-[![Dependency Status](https://david-dm.org/myTerminal/template-library-gulp.svg)](https://david-dm.org/myTerminal/template-library-gulp)
-[![devDependency Status](https://david-dm.org/myTerminal/template-library-gulp/dev-status.svg)](https://david-dm.org/myTerminal/template-library-gulp#info=devDependencies)
-[![peer Dependency Status](https://david-dm.org/myTerminal/template-library-gulp/peer-status.svg)](https://david-dm.org/myTerminal/template-library-gulp#info=peerDependencies)  
 [![License: CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc-sa/4.0)
 
 A template to create front-end libraries with [Gulp.js](https://www.npmjs.com/package/gulp) as the task-runner

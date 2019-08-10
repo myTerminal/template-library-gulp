@@ -17,13 +17,13 @@ const gulp = require('gulp'),
     gulpUglify = require('gulp-uglify'),
     gulpEslint = require('gulp-eslint');
 
-const clean = (done) => {
+const clean = done => {
     return del([outputDir], done);
 };
 
 const copyFonts = () =>
     gulp.src([
-        sourceDir + '/fonts/**/*'
+        `${sourceDir}/fonts/**/*`
     ]).pipe(gulpCopy(outputDir, {
         prefix: 1
     }));
@@ -31,14 +31,14 @@ const copyFonts = () =>
 const copy = copyFonts;
 
 const styles = () =>
-    gulp.src(sourceDir + '/styles/**/*.less')
+    gulp.src(`${sourceDir}/styles/**/*.less`)
         .pipe(gulpLess())
         .pipe(gulpConcat(libraryFileName + '.css'))
         .pipe(gulpCleanCss())
-        .pipe(gulp.dest(outputDir + '/styles'));
+        .pipe(gulp.dest(`${outputDir}/styles`));
 
 const scriptsDebug = () =>
-    gulp.src(sourceDir + '/scripts/' + libraryFileName + '.js')
+    gulp.src(`${sourceDir}/scripts/${libraryFileName}.js`)
         .pipe(gulpSourceMaps.init())
         .pipe(gulpBabel())
         .pipe(gulpWrap({
@@ -79,10 +79,10 @@ return <%= contents %>;
 }));`
         }))
         .pipe(gulpSourceMaps.write('.'))
-        .pipe(gulp.dest(outputDir + '/scripts/'));
+        .pipe(gulp.dest(`${outputDir}/scripts/`));
 
 const scripts = () =>
-    gulp.src(sourceDir + '/scripts/' + libraryFileName + '.js')
+      gulp.src(`${sourceDir}/scripts/${libraryFileName}.js`)
         .pipe(gulpBabel())
         .pipe(gulpWrap({
             deps: [
@@ -122,10 +122,10 @@ return <%= contents %>;
 }));`
         }))
         .pipe(gulpUglify())
-        .pipe(gulp.dest(outputDir + '/scripts/'));
+        .pipe(gulp.dest(`${outputDir}/scripts/`));
 
 const lint = () =>
-    gulp.src(sourceDir + '/scripts/**/*.js')
+    gulp.src(`${sourceDir}/scripts/**/*.js`)
         .pipe(gulpEslint())
         .pipe(gulpEslint.format())
         .pipe(gulpEslint.failAfterError());
@@ -148,21 +148,21 @@ const build = gulp.series(
 const develop = () => {
     gulp.watch(
         [
-            sourceDir + '/fonts/**/*'
+            `${sourceDir}/fonts/**/*`
         ],
         copy
     );
 
     gulp.watch(
         [
-            sourceDir + '/styles/**/*.less'
+            `${sourceDir}/styles/**/*.less`
         ],
         styles
     );
 
     gulp.watch(
         [
-            sourceDir + '/scripts/**/*.js'
+            `${sourceDir}/scripts/**/*.js`
         ],
         scriptsDebug
     );
@@ -173,6 +173,6 @@ export {
     build,
     develop,
     lint
-}
+};
 
 export default build;

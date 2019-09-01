@@ -1,6 +1,6 @@
 /* global $ */
 
-const templateLibrary = (function () {
+const templateWebLibrary = (function () {
     const messageTypes = {
         notification: 'notification',
         warning: 'warning',

@@ -1,19 +1,19 @@
 {
-  "name": "template-library",
+  "name": "template-web-library",
   "version": "0.9.0",
-  "description": "template-library",
-  "main": "build/scripts/template-library.js",
+  "description": "template-web-library",
+  "main": "build/scripts/template-web-library.js",
   "scripts": {
     "gulp": "gulp"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:myTerminal/template-library-gulp.git"
+    "url": "git@github.com:myTerminal/template-web-library-gulp.git"
   },
   "bugs": {
-    "url": "https://github.com/myTerminal/template-library-gulp/issues"
+    "url": "https://github.com/myTerminal/template-web-library-gulp/issues"
   },
-  "homepage": "https://github.com/myTerminal/template-library-gulp#readme",
+  "homepage": "https://github.com/myTerminal/template-web-library-gulp#readme",
   "keywords": [
     "template"
   ],

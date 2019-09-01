@@ -1,7 +1,7 @@
 /* global require */
 
-const libraryFileName = 'template-library',
-    libraryName = 'templateLibrary',
+const libraryFileName = 'template-web-library',
+    libraryName = 'templateWebLibrary',
     sourceDir = 'src',
     outputDir = 'build';
 

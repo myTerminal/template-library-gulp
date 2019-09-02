@@ -1,4 +1,4 @@
-/* global require */
+/* global require module */
 
 const libraryFileName = 'template-web-library',
     libraryName = 'templateWebLibrary',
@@ -17,9 +17,8 @@ const gulp = require('gulp'),
     gulpUglify = require('gulp-uglify'),
     gulpEslint = require('gulp-eslint');
 
-const clean = done => {
-    return del([outputDir], done);
-};
+const clean = done =>
+    del([outputDir], done);
 
 const copyFonts = () =>
     gulp.src([
@@ -168,11 +167,10 @@ const develop = () => {
     );
 };
 
-export {
+module.exports = {
     debug,
     build,
     develop,
-    lint
+    lint,
+    default: build
 };
-
-export default build;

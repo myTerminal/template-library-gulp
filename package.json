@@ -20,7 +20,7 @@
   "author": "Mohammed Ismail Ansari <team.terminal@gmail.com>",
   "license": "CC-BY-NC-SA-4.0",
   "dependencies": {
-    "jquery": "3.3.1"
+    "jquery": "3.4.0"
   },
   "devDependencies": {
     "babel-core": "6.26.3",
